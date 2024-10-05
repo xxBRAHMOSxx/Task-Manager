@@ -51,14 +51,59 @@ const createNewUser = asyncHandler(async (req, res) => {
 // @route Patch /users
 // @access Private
 const updateUser = asyncHandler(async (req, res) => {
+    const {id,username,role,active,password} = req.body
 
+    //confirm data
+    if(!id || !username || !Array.isArray(roles) || !roles.length || typeof active !=='boolean'){
+        return res.status(400).json({message:'All fields are required'})
+    }
+
+    const user = await User.findById(id).exec()
+
+    if(!user){
+        return res.status(400).json({message:'User not found'})
+    }
+
+    //check for duplicate
+    const duplicate = await Used.findOne({username}).lean().exec()
+
+    //Allow updates to oiriginal user
+    if(duplicate && duplicate?._id.toStirng() !==id){
+        return res.status(409).json({message:'username already exists'})
+    }
+
+    user.username = username
+    user.roles = roles
+    user.active = active
+
+    if(password){
+        //Hash password
+        user.password = await bcrypt.hash(password,10)
+    }
+    const updatedUser = await user.save()
+    res.json({message:`${updateUser.username} updated`})
 })
 
 // @desc De;ete a user
 // @route Delete /users
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
-
+    const {id} = req.body
+    //confirm data
+    if(!id){
+        return res.status(400).json({message:'User id required'})
+    }
+    //does user still have assigned notes
+    const notes = await Note.findOne({user:id}).lean().exec()
+    if(notes?.length){
+        return res.status(400).json({ message:'User has assigned notes'})
+    }
+    const user = await User.findById(id).exec()
+    if(!user){
+        return res.status(400).json({message:'user not found'})
+    }
+    const result = await user.deleteOne() 
+    res.json({message:`Username ${result.username} with ID ${result._id} deleted successfuly`})
 })
 
 module.exports = {
