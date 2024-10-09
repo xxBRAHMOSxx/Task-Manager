@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faHouse } from '@fortawesome/free-solid-svg-icons'
+import {faHome } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const DashFooter = () => {
@@ -17,9 +17,9 @@ const DashFooter = () => {
             <button
                 className="dash-footer__button icon-button"
                 title="home"
-                onclick = {onGoHomeClicked}
+                onClick = {onGoHomeClicked}
             >
-                <FontAwesomeIcon iocn={faHouse}/>
+                <FontAwesomeIcon icon={faHome}/>
             </button>
         )
     }
@@ -31,9 +31,8 @@ const DashFooter = () => {
             <p>Status</p>
         </footer>
     )
-  return (
-    <div>DashFooter</div>
-  )
+  return content
+
 }
 
 export default DashFooter

@@ -53,8 +53,8 @@
   transform: scale(1.2);
 }
 
-.icon-button[disabled] {
-  visibility: hidden;
+.icon-button[enabled] {
+  visibility: visible;
 }
 
 /* || GENERAL STYLES */
