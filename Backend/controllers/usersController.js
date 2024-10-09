@@ -50,7 +50,7 @@ const createNewUser = asyncHandler(async (req, res) => {
 // @desc Update a user
 // @route Patch /users
 // @access Private
-const updateUser = asyncHandler(async (req, res) => {
+const updateUser = asyncHandler( async (req, res) => {
     const { id, username, roles, active, password } = req.body
 
     //confirm data

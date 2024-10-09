@@ -3,6 +3,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose)
 
 const noteSchema = new mongoose.Schema(
     {
+        //here user is now the complete User model, so we cane use every thing User model has
         user: {
             type: mongoose.Schema.Types.ObjectId,
             required: true, 
