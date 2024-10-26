@@ -12,13 +12,13 @@ import UsersList from "./features/users/UsersList";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />} />
+      <Route path="" element={<Layout />} />
 
       {/*make sure to change the information inside */}
       <Route index element={<Public />} />
-      <Route path="login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
 
-      <Route path="dash" element={<DashLayout />}>
+      <Route path="/dash" element={<DashLayout />}>
 
         <Route index element={<Welcome />} />
 
