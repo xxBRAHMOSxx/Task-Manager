@@ -1,5 +1,5 @@
+import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./api/apiSlice";
-
 import { configureStore } from "@reduxjs/toolkit";;
 
 
@@ -11,3 +11,5 @@ export const store = configureStore({
         getDefaultMiddleware().concat(apiSlice.middleware),
     devTools: true
 })
+
+setupListeners(store.dispatch)
