@@ -3,9 +3,14 @@ import { selectAllUsers } from '../users/usersApiSlice'
 import NewNoteForm from './NewNoteForm'
 
 const NewNote = () => {
+    // this returns an array
     const users = useSelector(selectAllUsers)
 
-    const content = users ? <NewNoteForm users={users} /> : <p>Loading...</p>
+    if (!users?.length) {
+        return <p>Not Currently Available</p>
+    }
+
+    const content =<NewNoteForm users={users} />
 
     return content
 }
