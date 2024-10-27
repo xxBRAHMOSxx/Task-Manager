@@ -22,11 +22,11 @@ const DashHeader = () => {
     }] = useSendLogoutMutation()
 
     useEffect(() => {
-        if (isSuccess) navigate('/login')
+        if (isSuccess) navigate('/')
     }, [isSuccess, navigate])
     const onLogout = ()=>{
         sendLogout()
-        navigate('/login')
+        navigate('/')
     }
 
     if (isLoading) return <p>Logging Out...</p>
