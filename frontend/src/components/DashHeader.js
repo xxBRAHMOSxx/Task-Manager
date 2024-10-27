@@ -22,8 +22,12 @@ const DashHeader = () => {
     }] = useSendLogoutMutation()
 
     useEffect(() => {
-        if (isSuccess) navigate('/')
+        if (isSuccess) navigate('/login')
     }, [isSuccess, navigate])
+    const onLogout = ()=>{
+        sendLogout()
+        navigate('/login')
+    }
 
     if (isLoading) return <p>Logging Out...</p>
 
@@ -38,7 +42,7 @@ const DashHeader = () => {
         <button
             className="icon-button"
             title="Logout"
-            onClick={sendLogout}
+            onClick={onLogout}
         >
             <FontAwesomeIcon icon={faRightFromBracket} />
         </button>
