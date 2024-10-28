@@ -13,14 +13,20 @@ const User = ({ userId }) => {
     if (user) {
         const handleEdit = () => navigate(`/dash/users/${userId}`)
 
-        const userRolesString = user.roles.toString().replaceAll(',', ', ')
+        let status = 'Employee'
+        let isManager = user.roles.includes('Manager')
+        let isAdmin = user.roles.includes('Admin')
+     
+        if (isManager) status = "Manager"
+        if (isAdmin) status = "Admin"
+        if (isAdmin && isManager) status = "Admin & Manager"
+
 
         const cellStatus = user.active ? '' : 'table__cell--inactive'
-
         return (
             <tr className="table__row user">
                 <td className={`table__cell ${cellStatus}`}>{user.username}</td>
-                <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
+                <td className={`table__cell ${cellStatus}`}>{status}</td>
                 <td className={`table__cell ${cellStatus}`}>
                     <button
                         className="icon-button table__button"
