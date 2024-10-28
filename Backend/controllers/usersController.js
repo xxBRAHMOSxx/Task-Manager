@@ -21,12 +21,12 @@ const createNewUser = asyncHandler(async (req, res) => {
     const { username, password, roles } = req.body
 
     //Confirm Data
-    if (!username || !password || !Array.isArray(roles) || !roles.length) {
+    if (!username || !password) {
         return res.status(400).json({ message: 'all fields are required' })
     }
 
     // Check for duplicate
-    const duplicate = await User.findOne({ username }).lean().exec()
+    const duplicate = await User.findOne({ username }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
     if (duplicate) {
         return res.status(409).json({ message: 'User already exists' })
@@ -34,7 +34,9 @@ const createNewUser = asyncHandler(async (req, res) => {
 
     // Hash the password
     const hashedPwd = await bcrypt.hash(password, 10) // salt rounds
-    const userObject = { username, "password": hashedPwd, roles }
+    const userObject = (!Array.isArray(roles) || !roles.length)
+        ? { username, "password": hashedPwd }
+        : { username, "password": hashedPwd, roles }
 
     //create and store new user
     const user = await User.create(userObject)
@@ -65,7 +67,7 @@ const updateUser = asyncHandler( async (req, res) => {
     }
 
     //check for duplicate
-    const duplicate = await User.findOne({ username }).lean().exec()
+    const duplicate = await User.findOne({ username }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
     //Allow updates to oiriginal user
     if (duplicate && duplicate?._id.toString() !== id) {
@@ -102,7 +104,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     if (!user) {
         return res.status(400).json({ message: 'user not found' })
     }
-    const result = await user.deleteOne()
+    await user.deleteOne()
     const reply = `Username ${user.username} with ID ${user.id} deleted successfully`
     res.json(reply)
 })

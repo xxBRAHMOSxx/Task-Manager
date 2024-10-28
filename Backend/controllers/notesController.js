@@ -1,9 +1,5 @@
-
 const Note = require('../models/Note')
 const asyncHandler = require('express-async-handler')
-
-
-//
 
 const getAllNotes = asyncHandler(async (req, res) => {
 
@@ -39,7 +35,7 @@ const createNewNote = asyncHandler(async (req, res) => {
 
     //check for duplicate title
 
-    const duplicateTitle = await Note.findOne({ title }).lean().exec()
+    const duplicateTitle = await Note.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
     if (duplicateTitle) {
         return res.status(409).json({ message: 'note title already exists' })
     }
@@ -68,7 +64,7 @@ const updateNote = asyncHandler(async (req, res) => {
     }
 
      // Check for duplicate title
-     const duplicate = await Note.findOne({ title }).lean().exec()
+     const duplicate = await Note.findOne({ title }).collation({ locale: 'en', strength: 2 }).lean().exec()
 
      // Allow renaming of the original note 
      if (duplicate && duplicate?._id.toString() !== id) {
@@ -97,7 +93,7 @@ const deleteNote = asyncHandler(async (req, res) => {
         return res.status(404).json({ message: ` are bhai bhai bhai kya kar rha hai-- note${res.status(404).statusCode} Not Found` });
     }
 
-    const result = await note.deleteOne()
+    await note.deleteOne()
     const reply = `note with title - ${note.title} with ID ${note.id} deleted successfully`
     res.json(reply)
 })
