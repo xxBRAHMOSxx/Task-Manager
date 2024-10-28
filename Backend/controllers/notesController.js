@@ -1,7 +1,7 @@
-const User = require('../models/User')
+
 const Note = require('../models/Note')
 const asyncHandler = require('express-async-handler')
-const { response } = require('express')
+
 
 //
 
@@ -79,7 +79,7 @@ const updateNote = asyncHandler(async (req, res) => {
     note.title = title
      note.completed = completed
 
-    const newNote = await note.save()
+    await note.save()
 
     res.json({ message: `notes have been updated to --=-- ${note.text} ` })
 
