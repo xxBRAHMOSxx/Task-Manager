@@ -1,62 +1,53 @@
-import { useGetNotesQuery } from "./notesApiSlice"
-import Note from "./Note"
-import useAuth from "../../hooks/useAuth"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
+import { useNavigate } from 'react-router-dom'
+import { useGetNotesQuery } from './notesApiSlice'
+import { memo } from 'react'
 
-const NotesList = () => {
+const Note = ({ noteId }) => {
 
-    const { username, isManager, isAdmin } = useAuth()
-
-    const {
-        data: notes,
-        isLoading,
-        isSuccess,
-        isError,
-        error
-    } = useGetNotesQuery('notesList', {
-        pollingInterval: 15000,
-        refetchOnFocus: true,
-        refetchOnMountOrArgChange: true
+    const { note } = useGetNotesQuery("notesList", {
+        selectFromResult: ({ data }) => ({
+            note: data?.entities[noteId]
+        }),
     })
 
-    let content
+    const navigate = useNavigate()
 
-    if (isLoading) content = <p>Loading...</p>
+    if (note) {
+        const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
 
-    if (isError) {
-        content = <p className="errmsg">{error?.data?.message}</p>
-    }
+        const updated = new Date(note.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'long' })
 
-    if (isSuccess) {
-        const { ids, entities } = notes
+        const handleEdit = () => navigate(`/dash/notes/${noteId}`)
 
-        let filteredIds
-        if (isManager || isAdmin) {
-            filteredIds = [...ids]
-        } else {
-            filteredIds = ids.filter(noteId => entities[noteId].username === username)
-        }
+        return (
+            <tr className="table__row">
+                <td className="table__cell note__status">
+                    {note.completed
+                        ? <span className="note__status--completed">Completed</span>
+                        : <span className="note__status--open">Open</span>
+                    }
+                </td>
+                <td className="table__cell note__created">{created}</td>
+                <td className="table__cell note__updated">{updated}</td>
+                <td className="table__cell note__title">{note.title}</td>
+                <td className="table__cell note__username">{note.username}</td>
 
-        const tableContent = ids?.length && filteredIds.map(noteId => <Note key={noteId} noteId={noteId} />)
-
-        content = (
-            <table className="table table--notes">
-                <thead className="table__thead">
-                    <tr>
-                        <th scope="col" className="table__th note__status">Username</th>
-                        <th scope="col" className="table__th note__created">Created</th>
-                        <th scope="col" className="table__th note__updated">Updated</th>
-                        <th scope="col" className="table__th note__title">Title</th>
-                        <th scope="col" className="table__th note__username">Owner</th>
-                        <th scope="col" className="table__th note__edit">Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableContent}
-                </tbody>
-            </table>
+                <td className="table__cell">
+                    <button
+                        className="icon-button table__button"
+                        onClick={handleEdit}
+                    >
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                    </button>
+                </td>
+            </tr>
         )
-    }
 
-    return content
+    } else return null
 }
-export default NotesList
+
+const memoizedNote = memo(Note)
+
+export default memoizedNote
