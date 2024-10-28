@@ -20,6 +20,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
             transformResponse: responseData => {
                 const loadedNotes = responseData.map(note => {
                     note.id = note._id
+                    
                     return note
                 });
                 return notesAdapter.setAll(initialState, loadedNotes)

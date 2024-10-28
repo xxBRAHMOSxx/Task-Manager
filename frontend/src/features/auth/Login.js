@@ -47,7 +47,8 @@ const Login = () => {
             } else {
                 setErrMsg(err.data?.message);
             }
-            errRef.current.focus();
+            if (errRef.current) {
+                errRef.current.focus();}
         }
     }
 
@@ -57,7 +58,7 @@ const Login = () => {
 
     const errClass = errMsg ? "errmsg" : "offscreen"
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <p>   </p>
 
     const content = (
         <section className="public">

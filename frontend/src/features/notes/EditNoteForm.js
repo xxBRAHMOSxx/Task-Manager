@@ -94,7 +94,7 @@ const EditNoteForm = ({ note, users }) => {
         <>
             <p className={errClass}>{errContent}</p>
 
-            <form className="form" onSubmit={e => e.preventDefault()}>
+            <form className="form" onSubmit={onSaveNoteClicked}>
                 <div className="form__title-row">
                     <h2>Edit Note #{note.ticket}</h2>
                     <div className="form__action-buttons">

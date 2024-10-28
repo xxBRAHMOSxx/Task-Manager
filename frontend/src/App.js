@@ -14,8 +14,13 @@ import Prefetch from './features/auth/Prefetch'
 import PersistLogin from './features/auth/PersistLogin'
 import RequireAuth from './features/auth/RequireAuth'
 import { ROLES } from './config/roles'
+import useTitle from './hooks/useTitle';
+
+
+
 
 function App() {
+  useTitle('Task Manager')
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
