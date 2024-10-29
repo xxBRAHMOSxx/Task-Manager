@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { useAddNewNoteMutation } from "./notesApiSlice"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
+import useAuth from "../../hooks/useAuth"
 
 const NewNoteForm = ({ users }) => {
-
+    const { currentUserId,isAdmin,isManager } = useAuth()
     const [addNewNote, {
         isLoading,
         isSuccess,
@@ -17,7 +18,7 @@ const NewNoteForm = ({ users }) => {
 
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
-    const [userId, setUserId] = useState(users[0].id)
+    const [userId, setUserId] = useState(currentUserId)
 
     useEffect(() => {
         if (isSuccess) {
@@ -29,9 +30,13 @@ const NewNoteForm = ({ users }) => {
     }, [isSuccess, navigate])
 
     const onTitleChanged = e => setTitle(e.target.value)
-    const onTextChanged = e => setText(e.target.value)
-    const onUserIdChanged = e => setUserId(e.target.value)
-
+    const onTextChanged = e => {
+        console.log(currentUserId)
+        setText(e.target.value)}
+    const onUserIdChanged = e => {
+        setUserId(e.target.value)
+        console.log(currentUserId)
+}
     const canSave = [title, text, userId].every(Boolean) && !isLoading
 
     const onSaveNoteClicked = async (e) => {
@@ -41,7 +46,7 @@ const NewNoteForm = ({ users }) => {
         }
     }
 
-    const options = users.map(user => {
+    let options = users.map(user => {
         return (
             <option
                 key={user.id}
@@ -49,6 +54,9 @@ const NewNoteForm = ({ users }) => {
             > {user.username}</option >
         )
     })
+    if(!(isManager || isAdmin)){
+        options = options.filter(option => option.key === currentUserId)
+    }
 
     const errClass = isError ? "errmsg" : "offscreen"
     const validTitleClass = !title ? "form__input--incomplete" : ''
@@ -94,7 +102,7 @@ const NewNoteForm = ({ users }) => {
                 />
 
                 <label className="form__label form__checkbox-container" htmlFor="username">
-                    ASSIGNED TO:</label>
+                    ASSIGN TO:</label>
                 <select
                     id="username"
                     name="username"

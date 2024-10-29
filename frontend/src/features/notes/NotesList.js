@@ -3,11 +3,12 @@ import Note from "./Note"
 import useAuth from "../../hooks/useAuth"
 import useTitle from "../../hooks/useTitle"
 import PulseLoader from 'react-spinners/PulseLoader'
+import { Link } from "react-router-dom"
 
 const NotesList = () => {
     useTitle('techNotes: Notes List')
 
-    const { username, isManager, isAdmin } = useAuth()
+    const { currentUserId,username, isManager, isAdmin } = useAuth()
 
     const {
         data: notes,
@@ -36,11 +37,12 @@ const NotesList = () => {
         if (isManager || isAdmin) {
             filteredIds = [...ids]
         } else {
-            filteredIds = ids.filter(noteId => entities[noteId].username === username)
+            filteredIds = ids.filter(noteId => entities[noteId].user._id === currentUserId)
         }
 
-        const tableContent = ids?.length && filteredIds.map(noteId => <Note key={noteId} noteId={noteId} />)
-
+        const tableContent = filteredIds?.length && filteredIds.map(noteId => <Note key={noteId} noteId={noteId} />)
+                            
+        
         content = (
             <table className="table table--notes">
                 <thead className="table__thead">
@@ -58,8 +60,13 @@ const NotesList = () => {
                 </tbody>
             </table>
         )
+        if(!tableContent) {
+            content = <p >
+                No notes associated with user  {username} found <br />{console.log(filteredIds)}
+                <Link to="/dash/notes/new" className="button">Create a new note</Link>
+                </p>
+        }
     }
-
     return content
 }
 export default NotesList
