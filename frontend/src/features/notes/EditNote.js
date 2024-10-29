@@ -7,7 +7,7 @@ import PulseLoader from 'react-spinners/PulseLoader'
 import useTitle from '../../hooks/useTitle'
 
 const EditNote = () => {
-    useTitle('techNotes: Edit Note')
+    useTitle('Task Manager: Edit Note')
 
     const { id } = useParams()
 
@@ -22,6 +22,7 @@ const EditNote = () => {
     const { users } = useGetUsersQuery("usersList", {
         selectFromResult: ({ data }) => ({
             users: data?.ids.map(id => data?.entities[id])
+            
         }),
     })
 

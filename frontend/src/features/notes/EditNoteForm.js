@@ -27,7 +27,7 @@ const EditNoteForm = ({ note, users }) => {
     const [title, setTitle] = useState(note.title)
     const [text, setText] = useState(note.text)
     const [completed, setCompleted] = useState(note.completed)
-    const [userId, setUserId] = useState(note.user)
+    const [userId, setUserId] = useState(note.user._id)
 
     useEffect(() => {
 
@@ -40,11 +40,11 @@ const EditNoteForm = ({ note, users }) => {
 
     }, [isSuccess, isDelSuccess, navigate])
 
-    const onTitleChanged = e => setTitle(e.target.value)
-    const onTextChanged = e => setText(e.target.value)
+    const onTitleChanged = e =>     setTitle(e.target.value)
+    const onTextChanged = e =>      setText(e.target.value)  
     const onCompletedChanged = e => setCompleted(prev => !prev)
-    const onUserIdChanged = e => setUserId(e.target.value)
-
+    const onUserIdChanged = e =>    setUserId(e.target.value)
+        
     const canSave = [title, text, userId].every(Boolean) && !isLoading
 
     const onSaveNoteClicked = async (e) => {
@@ -53,8 +53,15 @@ const EditNoteForm = ({ note, users }) => {
         }
     }
 
-    const onDeleteNoteClicked = async () => {
-        await deleteNote({ id: note.id })
+    const onDeleteNoteClicked = async (e) => {
+        e.preventDefault()
+        try {
+            const ree = await deleteNote({ id: note.id })
+            console.log(ree)
+            navigate('/dash/notes')
+        } catch (error) {
+            console.error('Failed to delete note', error)
+        }
     }
 
     const created = new Date(note.createdAt).toLocaleString('en-US', { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })
@@ -144,11 +151,11 @@ const EditNoteForm = ({ note, users }) => {
                             />
                         </label>
 
-                        <label className="form__label form__checkbox-container" htmlFor="note-username">
+                        <label className="form__label form__checkbox-container" htmlFor="note-userId">
                             ASSIGNED TO:</label>
                         <select
-                            id="note-username"
-                            name="username"
+                            id="note-userId"
+                            name="userId"
                             className="form__select"
                             value={userId}
                             onChange={onUserIdChanged}

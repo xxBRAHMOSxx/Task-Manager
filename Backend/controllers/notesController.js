@@ -73,7 +73,8 @@ const updateNote = asyncHandler(async (req, res) => {
 
     note.text = text
     note.title = title
-     note.completed = completed
+    note.completed = completed
+    note.user = user
 
     await note.save()
 
@@ -95,7 +96,7 @@ const deleteNote = asyncHandler(async (req, res) => {
 
     await note.deleteOne()
     const reply = `note with title - ${note.title} with ID ${note.id} deleted successfully`
-    res.json(reply)
+    res.status(200).json(reply)
 })
 
 module.exports = {
