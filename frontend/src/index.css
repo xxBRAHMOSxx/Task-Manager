@@ -206,7 +206,7 @@ a:focus-visible {
 
 .public__main{
   
-  padding-top: 5px;
+  
   right: 30%;
   left: 35%;
   margin-left: 10px;
@@ -234,6 +234,7 @@ a:focus-visible {
   position: absolute;
 }
 .public-detail { 
+  padding-top: 5px;
   display: flex; 
   flex-direction: column; 
   gap: 1rem; 
