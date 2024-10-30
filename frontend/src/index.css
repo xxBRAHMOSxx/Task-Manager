@@ -65,7 +65,7 @@
 }
 
 /* || GENERAL STYLES */
-.toast {
+.toast-thapa {
   position: fixed;
   bottom: 20px;
   left: 47%;
@@ -93,7 +93,6 @@
   100% { 
     opacity: 0; 
     transform: translateY(20px);
-
   }}
 body {
   font-family: 'Nunito', sans-serif;
@@ -232,8 +231,8 @@ a:focus-visible {
 }
 .head-line{
   animation: slideDowm 1s ease-in-out;
-  top: 16vh;
-  right: 40%;
+  top: 13vh;
+  right: 36.5%;
 
   position: absolute;
 }

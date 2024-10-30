@@ -20,8 +20,7 @@ const DashLayout = () => {
             <DashHeader />
             <div className="dash-container">
                 <Outlet />
-                {toast.visible && <div className="toast">{toast.message}</div>}
-
+                {toast.visible && <div className="toast-thapa">{toast.message}</div>}
             </div>
             <DashFooter />
         </>
