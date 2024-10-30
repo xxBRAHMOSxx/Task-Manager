@@ -205,10 +205,8 @@ a:focus-visible {
 
 
 .public__main{
-  display: flexbox;
-  flex-direction: column;
-  padding: auto;
-  margin: auto;
+  
+ 
   right: 30%;
   left: 35%;
   margin-left: 10px;
@@ -216,7 +214,6 @@ a:focus-visible {
   height: 450px;
   width: 500px;
   justify-content: center;
-
   border-style: inset;
   border-width: 1px;
   border-color: linear-gradient(to bottom right,#404f5f, #000607 );;
