@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "clear": "cls",
+    "clear": "npm install",
     "start": "node server.js",
     "dev": "nodemon server.js"
-    
   },
   "keywords": [],
   "author": "",
