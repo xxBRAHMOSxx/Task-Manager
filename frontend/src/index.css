@@ -65,13 +65,42 @@
 }
 
 /* || GENERAL STYLES */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 47%;
 
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 20px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: fadeInOut 3s ease-in-out;
+}
+@keyframes fadeInOut { 
+  0% { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  } 
+  10% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+  90% { opacity: 1; 
+    transform: translateY(0); 
+  } 
+  100% { 
+    opacity: 0; 
+    transform: translateY(20px);
+
+  }}
 body {
   font-family: 'Nunito', sans-serif;
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
-  background-image: url('./img/background.jpg');
+  background: linear-gradient(to bottom right, #000607, #404f5f); 
   background-size: cover;
   background-position: top right;
   background-blend-mode: multiply;

@@ -6,7 +6,7 @@ import PulseLoader from 'react-spinners/PulseLoader'
 import { Link } from "react-router-dom"
 
 const NotesList = () => {
-    useTitle('techNotes: Notes List')
+    useTitle('TaskManager: Notes List')
 
     const { currentUserId,username, isManager, isAdmin } = useAuth()
 

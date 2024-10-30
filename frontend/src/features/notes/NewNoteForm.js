@@ -4,6 +4,8 @@ import { useAddNewNoteMutation } from "./notesApiSlice"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 import useAuth from "../../hooks/useAuth"
+import { useDispatch } from "react-redux"
+import { showToast } from "../../app/toastSlice"
 
 const NewNoteForm = ({ users }) => {
     const { currentUserId,isAdmin,isManager } = useAuth()
@@ -15,6 +17,7 @@ const NewNoteForm = ({ users }) => {
     }] = useAddNewNoteMutation()
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [title, setTitle] = useState('')
     const [text, setText] = useState('')
@@ -43,6 +46,7 @@ const NewNoteForm = ({ users }) => {
         e.preventDefault()
         if (canSave) {
             await addNewNote({ user: userId, title, text })
+            dispatch(showToast('Task Added'));
         }
     }
 

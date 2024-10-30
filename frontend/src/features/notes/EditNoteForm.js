@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import useAuth from "../../hooks/useAuth"
+import { useDispatch } from "react-redux"
+import { showToast } from "../../app/toastSlice"
 
 const EditNoteForm = ({ note, users }) => {
 
@@ -23,6 +25,7 @@ const EditNoteForm = ({ note, users }) => {
     }] = useDeleteNoteMutation()
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const [title, setTitle] = useState(note.title)
     const [text, setText] = useState(note.text)
@@ -50,14 +53,16 @@ const EditNoteForm = ({ note, users }) => {
     const onSaveNoteClicked = async (e) => {
         if (canSave) {
             await updateNote({ id: note.id, user: userId, title, text, completed })
+            dispatch(showToast('Task Updated'));  
+
         }
     }
 
     const onDeleteNoteClicked = async (e) => {
         e.preventDefault()
         try {
-            const ree = await deleteNote({ id: note.id })
-            console.log(ree)
+            await deleteNote({ id: note.id })
+            dispatch(showToast('Task deleted'));
             navigate('/dash/notes')
         } catch (error) {
             console.error('Failed to delete note', error)

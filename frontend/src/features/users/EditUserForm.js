@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux"
+import { showToast } from "../../app/toastSlice"
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
@@ -24,6 +28,7 @@ const EditUserForm = ({ user }) => {
     }] = useDeleteUserMutation()
 
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const [username, setUsername] = useState(user.username)
     const [validUsername, setValidUsername] = useState(false)
@@ -67,13 +72,17 @@ const EditUserForm = ({ user }) => {
     const onSaveUserClicked = async (e) => {
         if (password) {
             await updateUser({ id: user.id, username, password, roles, active })
+            dispatch(showToast('User saved'));  
+
         } else {
             await updateUser({ id: user.id, username, roles, active })
+            dispatch(showToast('User saved'));  
         }
     }
 
     const onDeleteUserClicked = async () => {
         await deleteUser({ id: user.id })
+        dispatch(showToast('User deleted'));  
     }
 
     const options = Object.values(ROLES).map(role => {
@@ -124,6 +133,8 @@ const EditUserForm = ({ user }) => {
                         >
                             <FontAwesomeIcon icon={faTrashCan} />
                         </button>
+                        <ToastContainer />
+
                     </div>
                 </div>
                 <label className="form__label" htmlFor="username">
@@ -174,7 +185,6 @@ const EditUserForm = ({ user }) => {
                 >
                     {options}
                 </select>
-
             </form>
         </>
     )
