@@ -62,7 +62,7 @@ const Login = () => {
 
     const content = (
         <section className="public">
-            <header>
+            <header className='head-line'>
                 <h1>Employee Login</h1>
             </header>
             <main className="login">
@@ -106,7 +106,7 @@ const Login = () => {
                 </form>
             </main>
             <footer>
-                <Link to="/">Back to Home</Link>
+                <Link to="/"> Home</Link>
             </footer>
         </section>
     )
