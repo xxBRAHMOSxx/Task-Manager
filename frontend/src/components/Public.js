@@ -9,14 +9,7 @@ const Public = () => {
             </header>
             <main className="public__main">
                 <p>Located in Beautiful Downtown Doe City, John Doe provides a trained staff ready to meet your tech repair needs.</p>
-                <address className="public__addr">
-                    John Doe<br />
-                    555 Doe Drive<br />
-                    Doe City, CA 12345<br />
-                    Contact us - (555) 555-5555
-                </address>
                 <br />
-                
                 <p>We offer a wide range of services including:</p>
                 <ul className="public-detail">
                     <li>Computer Repair</li>
@@ -25,7 +18,9 @@ const Public = () => {
                     <li>Software Installation</li>
                     <li>Network Setup</li>
                 </ul>
-                <p>Come visit us today, or give us a call for a free consultation.</p>
+                <p>Come visit us today, or give us a call for a free consultation. <br/>(555) 555-5555</p>
+              
+                
             </main>
             <footer className='foot-line'>
                 <Link to="/login">

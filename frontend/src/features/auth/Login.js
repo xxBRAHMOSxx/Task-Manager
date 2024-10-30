@@ -101,13 +101,13 @@ const Login = () => {
                             onChange={handleToggle}
                             checked={persist}
                         />
-                        Trust This Device
+                        Trust This Device 
                     </label>
+                        
+                        <Link className='home-buton' to="/"> Home</Link>
                 </form>
             </main>
-            <footer>
-                <Link to="/"> Home</Link>
-            </footer>
+            
         </section>
     )
 

@@ -13,6 +13,7 @@ const Welcome = () => {
 
     const content = (
         <section className="welcome">
+            <div className='welcome-content'>
 
             <p>{today}</p>
 
@@ -25,6 +26,7 @@ const Welcome = () => {
             {(isManager || isAdmin) && <p><Link to="/dash/users">View User Settings</Link></p>}
 
             {(isManager || isAdmin) && <p><Link to="/dash/users/new">Add New User</Link></p>}
+            </div>
 
         </section>
     )

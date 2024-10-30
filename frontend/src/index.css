@@ -32,6 +32,7 @@
   color: var(--ERROR);
   padding: 0.25em;
   margin-bottom: 0.5em;
+  
 }
 
 .errmsg a:any-link {
@@ -107,22 +108,112 @@ a:focus-visible {
 
 .public,
 .welcome {
-  display: flex;
+  background: linear-gradient(to bottom right, #000607, #404f5f); 
+  /* overflow: scroll;  */
+  position: absolute; 
+  height: 82vh;
+  width: 98%;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  font-family:  "consolas", sans-serif;
   flex-direction: column;
-  gap: 1rem;
+  
+
+  .welcome-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 10px;
+    animation: fadeIn 1s ease-in-out;
+
+  }
+ 
 }
 
+
 .public {
-  padding: 1em;
-  flex-grow: 1;
+  background: linear-gradient(to bottom right, #000607, #404f5f); 
+  overflow: scroll; 
+  position: relative; 
+  height: 100vh;
+  width: 100%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: start;
+  color: rgb(211, 212, 218);
+  font-family: "consolas", sans-serif;
 }
+
 
 .public__main,
 .login {
-  flex-grow: 1;
-  border-top: 2px solid var(--BORDER-COLOR);
-  border-bottom: 2px solid var(--BORDER-COLOR);
+  display: flexbox;
   padding: 1em 0;
+  margin: auto;
+  padding: auto;
+  margin-left: 43%;
+  padding-right: 40px;
+  padding-left: 40px;
+  
+  border-style: inset;
+  border-width: 1px;
+  border-color: linear-gradient(to bottom right,#404f5f, #000607 );;
+  border-radius: 20px;
+  background-color: rgb(39, 51, 54);
+  position: absolute;
+
+  animation: fadeIn 1s ease-in-out;
+
+}
+.home-buton{
+  padding-left: 100px;  
+  padding-right: 100px;
+}
+.home-buton:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.public__main{
+  display: flexbox;
+  flex-direction: column;
+  padding: auto;
+  margin: auto;
+  right: 30%;
+  left: 35%;
+  margin-left: 10px;
+
+  height: 450px;
+  width: 500px;
+  justify-content: center;
+
+  border-style: inset;
+  border-width: 1px;
+  border-color: linear-gradient(to bottom right,#404f5f, #000607 );;
+  border-radius: 20px;
+  background-color: rgb(39, 51, 54);
+  padding-left: 20px;
+  position: absolute;
+
+  animation: fadeIn 1s ease-in-out;
+  
+
+}
+.head-line{
+  animation: slideDowm 1s ease-in-out;
+  top: 16vh;
+  right: 40%;
+
+  position: absolute;
+}
+.public-detail { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1rem; 
+  padding-left: 10px; 
+ 
 }
 
 .public__addr {
@@ -139,9 +230,12 @@ a:focus-visible {
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: var(--BGCOLOR);
+  background-color: rgb(39, 51, 54);
+  font-family: "consolas";
+
   padding: 0 0.5em;
   border-bottom: 1px solid var(--BORDER-COLOR);
+
 }
 
 .dash-header__container {
@@ -149,6 +243,8 @@ a:focus-visible {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  animation: fadeIn 1s ease-in-out;
+
 }
 
 .dash-header__container--small {
@@ -160,31 +256,77 @@ a:focus-visible {
   flex-flow: row nowrap;
   justify-content: flex-end;
   gap: 0.5em;
+  
 }
 
 .dash-container {
   padding: 0.75em 0.5em 0.5em;
   flex-grow: 1;
+  background: linear-gradient(to bottom right, #000607, #404f5f); 
+  overflow: scroll; 
+  position: relative; 
+  
 }
 
 .dash-footer {
-  font-size: 1rem;
+  
+  font-size: 1.5rem;
+  font-family: "consolas";
   position: sticky;
   bottom: 0;
   z-index: 1;
-  background-color: var(--BGCOLOR);
+  background-color: rgb(39, 51, 54);
+
   padding: 0.5em;
   border-top: 1px solid var(--BORDER-COLOR);
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   gap: 1em;
+  
 }
 
 .dash-footer__button {
   font-size: 1rem;
   width: auto;
   height: auto;
+  
+
+
+}
+
+
+.employee-login { 
+  top: 86%;
+  right: 43.7%;
+  position: absolute;
+  font-weight: bold; 
+  animation: slideIn 1s ease-in-out;
+}
+
+
+
+.employee-login:hover {
+  text-decoration: underline; 
+  cursor: pointer;
+}
+.Owner-john {
+  font-size: 18px; 
+  font-weight: bold; 
+  flex-grow: 1;
+
+  top: 90%;
+  right: 43.9%;
+
+  position: absolute;
+  animation: slideIn 1s ease-in-out;
+
+}
+.public-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 10px;
 }
 
 /* || TABLES - GENERAL */
@@ -287,6 +429,11 @@ tr {
 .form__submit-button {
   padding: 0.5em;
   border-radius: 15px;
+  cursor: pointer;
+}
+.form__submit-button:hover{
+  background-color: #404f5f;
+  color: white;
 }
 
 .form__input--text {
@@ -375,4 +522,34 @@ tr {
   .form__action-buttons {
     position: static;
   }
+}
+
+/* animation */
+@keyframes slideIn 
+{ 
+  from { 
+    opacity: 0;
+    transform: translateY(40px); 
+  } to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+}
+@keyframes slideDowm 
+{ 
+  from { 
+    opacity: 0;
+    transform: translateY(-40px); 
+  } to { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  } 
+}
+@keyframes fadeIn 
+{ 
+  from { 
+    opacity: 0;
+  } to { 
+    opacity: 1; 
+  } 
 }
