@@ -17,12 +17,12 @@ const DashLayout = () => {
             setTimeout(() => { dispatch(hideToast()); }, 3000); // Hide toast after 3 seconds 
             } 
         }, [toast, dispatch]);
-        content = <Outlet/>? <Outlet/>:<PulseLoader color={"#FFF"} />
+     
     return (
         <>
             <DashHeader />
             <div className="dash-container">
-                {content}
+                 <Outlet/>? <Outlet/>:<PulseLoader color={"#FFF"} />
                 {toast.visible && <div className="toast-thapa">{toast.message}</div>}
             </div>
             <DashFooter />
