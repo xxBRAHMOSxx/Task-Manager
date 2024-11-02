@@ -11,7 +11,7 @@ const Welcome = () => {
     const date = new Date()
     const today = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'long' }).format(date)
 
-    const content = (
+    const content=(
         <section className="welcome">
             <div className='welcome-content'>
 
@@ -31,6 +31,6 @@ const Welcome = () => {
         </section>
     )
 
-    return content
+    return content? content:<PulseLoader color={"#FFF"} />
 }
 export default Welcome

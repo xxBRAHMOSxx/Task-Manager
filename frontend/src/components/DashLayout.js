@@ -19,7 +19,8 @@ const DashLayout = () => {
         }, [toast, dispatch]);
      
     return (
-        <>
+        <>  
+            <PulseLoader color={"#FFF"} />
             <DashHeader />
             <div className="dash-container">
                  <Outlet/>? <Outlet/>:<PulseLoader color={"#FFF"} />
