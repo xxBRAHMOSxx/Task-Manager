@@ -4,7 +4,6 @@ import DashFooter from "./DashFooter"
 import { hideToast } from "../app/toastSlice";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from "react";
-import PulseLoader from "react-spinners/PulseLoader";
 
 
 
@@ -23,7 +22,7 @@ const DashLayout = () => {
             <PulseLoader color={"#FFF"} />
             <DashHeader />
             <div className="dash-container">
-                 <Outlet/>? <Outlet/>:<PulseLoader color={"#FFF"} />
+                 <Outlet/>
                 {toast.visible && <div className="toast-thapa">{toast.message}</div>}
             </div>
             <DashFooter />

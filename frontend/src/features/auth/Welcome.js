@@ -32,6 +32,6 @@ const Welcome = () => {
         </section>
     )
 
-    return content? content:<PulseLoader color={"#FFF"} />
+    return content
 }
 export default Welcome
