@@ -15,24 +15,16 @@ import PersistLogin from './features/auth/PersistLogin'
 import RequireAuth from './features/auth/RequireAuth'
 import { ROLES } from './config/roles'
 import useTitle from './hooks/useTitle';
-import { useEffect, useState } from 'react';
-import PulseLoader from 'react-spinners/PulseLoader';
+
 
 
 
 
 
 function App() {
-  const [loading, setLoading] = useState(false)
-  useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 5000)
-  }, [])
+  
   useTitle('Task Manager')
   return (
-    loading ? <div><PulseLoader/></div> :
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* public routes */}
