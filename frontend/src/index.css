@@ -206,7 +206,7 @@ a:focus-visible {
 
 .public__main{
   
-  
+  display: flex;
   right: 30%;
   left: 35%;
   margin-left: 10px;
