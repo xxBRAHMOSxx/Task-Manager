@@ -39,6 +39,18 @@ Error Handling: Custom middleware for handling errors and logging them to files.
 CORS: Configured to allow cross-origin requests from the frontend.
 Rate Limiting: Limits the number of login attempts to prevent brute-force attacks.
 
+# Role-Based Access Control (RBAC) 
+
+Role-Based Access Control (RBAC) is implemented to ensure that only authorized users can perform certain actions, enhancing the security and integrity of the application.
+
+Roles and Permissions
+defined the following roles in this application:
+
+* Admin: Has the highest level of access, including managing users and their roles, creating and deleting notes, and viewing all user activities.
+
+* Manager: Can view and edit notes, assign tasks, and manage user activities. This role has fewer permissions compared to Admin but more than regular Employee.
+
+* Employee : Can create, view, and update their notes. They have the most restricted access, focusing solely on their tasks and data.
 
 # ScreenShots
 
@@ -48,4 +60,4 @@ Rate Limiting: Limits the number of login attempts to prevent brute-force attack
 
 ![Screenshot 2024-11-15 201649](https://github.com/user-attachments/assets/327d0fe2-4734-4041-97b2-5b4afb085a49)
 
- * To run this project locally clone the repo and change cors allowed origin under config/backend and baseURl under api/app/frontend *
+ * To run this project locally clone the repo and change cors allowed origin under config/backend and baseURl under api/app/frontend 
