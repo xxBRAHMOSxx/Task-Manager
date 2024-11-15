@@ -94,7 +94,7 @@ const DashHeader = () => {
         notesButton = (
             <button
                 className="icon-button"
-                title="Notes"
+                title="Tasks"
                 onClick={onNotesClicked}
             >
                 <FontAwesomeIcon icon={faFilePen} />

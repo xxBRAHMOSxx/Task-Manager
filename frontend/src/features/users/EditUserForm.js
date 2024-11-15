@@ -59,13 +59,11 @@ const EditUserForm = ({ user }) => {
     const onUsernameChanged = e => setUsername(e.target.value)
     const onPasswordChanged = e => setPassword(e.target.value)
 
-    const onRolesChanged = e => {
-        const values = Array.from(
-            e.target.selectedOptions,
-            (option) => option.value
-        )
-        setRoles(values)
-    }
+    const onRolesChanged = e => { 
+        const value = e.target.value; 
+        setRoles(prevRoles => prevRoles.includes(value)
+         ? prevRoles.filter(role => role !== value)
+         : [...prevRoles, value] ); };
 
     const onActiveChanged = () => setActive(prev => !prev)
 

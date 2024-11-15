@@ -320,7 +320,11 @@ a:focus-visible {
 
 }
 
+.addNotebutton:hover{
+  text-decoration: underline;
+  cursor: pointer;
 
+}
 .employee-login { 
   top: 86%;
   right: 43.7%;
@@ -532,6 +536,21 @@ tr {
 
   .table {
     font-size: 1.5rem;
+  }
+  .SearchInput{
+    margin-bottom: 3px;
+    width: 50%;
+    padding: 0.2em;
+  }
+  .SearchInput:focus{
+    outline: none; 
+    box-shadow: 0 0 10px 2px rgba(56, 152, 255, 0.75);
+
+  }
+  .sort{
+    margin-bottom: 3px;
+    margin-right: 3px;
+    padding: 0.2em;
   }
 
   .table--notes {
