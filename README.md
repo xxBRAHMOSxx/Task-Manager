@@ -60,4 +60,8 @@ defined the following roles in this application:
 
 ![Screenshot 2024-11-15 201649](https://github.com/user-attachments/assets/327d0fe2-4734-4041-97b2-5b4afb085a49)
 
- * To run this project locally clone the repo and change cors allowed origin under config/backend and baseURl under api/app/frontend 
+
+ * To run this project locally clone the repo and change cors allowed origin under config/backend to localhost:3500 and baseURl under api/app/frontend to localhost:3000
+
+use "npm run dev" for backend 
+use "npm start" for frontend
